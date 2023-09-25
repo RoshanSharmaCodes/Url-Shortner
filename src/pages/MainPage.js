@@ -5,6 +5,12 @@ export const MainPage = () => {
 
     let [shortUrl, setShortUrl] = useState("")
     let [mainUrl, setMainUrl] = useState("")
+    let [copyText, setCopyText] = useState("Copy")
+
+    const changeCopyText = ()=> {
+        setCopyText("Copied")
+        navigator.clipboard.writeText(shortUrl)
+    }
 
     const generateShortUrl = (e) => {
         e.preventDefault()        
@@ -14,7 +20,7 @@ export const MainPage = () => {
     useEffect(()=>{
         console.log(mainUrl)
         console.log(shortUrl)
-    },[mainUrl])
+    },[mainUrl,copyText])
 
     
 
@@ -25,7 +31,7 @@ export const MainPage = () => {
                 <input type="text" className={styles.urlInput } placeholder="https://example.com"  onChange={(e)=>setMainUrl(e.target.value)}/>
                 <button type="submit" className={styles.submitBtn}>Get Short Url</button>
             </form>
-            {shortUrl&&<input type="text" className={styles.ShortUrlInput } value={shortUrl} disabled/>}
+            {shortUrl&& <div className={styles.shortUrlDiv}><input className={styles.shortUrlText} value={shortUrl} disabled/><button className={styles.copyBtn} onClick={(e)=>changeCopyText()}>{copyText}</button></div>}
         </div>
     </div>
   )
