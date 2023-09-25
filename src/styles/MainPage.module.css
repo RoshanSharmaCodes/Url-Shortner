@@ -1,0 +1,62 @@
+.container{
+    width: 100%;
+    height: 100vh;
+    background-color: aliceblue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main{
+    width: 100%;
+    max-width: 700px;
+    height: 100%;
+    max-height: 400px;
+    border-radius: 10px;
+    box-shadow: 7px 9px 5px 0px rgba(235,235,235,1);
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 0px;
+}
+
+.urlInput{
+    width:  100%;
+    max-width: 600px;
+    border-radius: 50px;
+    border: 3px solid #c2c2c2;
+    height: 50px;
+    font-size: 15px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
+.urlInput:focus{
+    border:0;
+}
+
+.submitBtn{
+    width: 200px;
+    height: 50px;
+    background-color: #27b1e8;
+    color: white;
+    font-size: 20px;
+    border: 0;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-bottom: 50px;
+}
+
+
+.ShortUrlInput{
+    width:  100%;
+    max-width: 600px;
+    border-radius: 50px;
+    border: 3px solid #42c74d;
+    height: 50px;
+    font-size: 15px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+}
+
