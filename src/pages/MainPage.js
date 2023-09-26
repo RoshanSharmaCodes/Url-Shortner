@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useRouter } from "next/router"
 import styles from "../styles/MainPage.module.css"
 
 export const MainPage = () => {
@@ -6,6 +7,7 @@ export const MainPage = () => {
     let [shortUrl, setShortUrl] = useState("")
     let [mainUrl, setMainUrl] = useState("")
     let [copyText, setCopyText] = useState("Copy")
+    const router = useRouter()
 
     const changeCopyText = ()=> {
         setCopyText("Copied")
@@ -15,7 +17,8 @@ export const MainPage = () => {
     const generateShortUrl = async (e) => {
         console.log("API Called")
         setCopyText("Copy")
-        e.preventDefault() 
+        e.preventDefault()
+        console.log("Original Url",mainUrl)
         const response = await fetch("/api/supabase",{
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -24,13 +27,6 @@ export const MainPage = () => {
         const data = await response.json()
         setShortUrl(data.url)
     }
-
-    useEffect(()=>{
-        console.log(mainUrl)
-        console.log(shortUrl)
-    },[mainUrl,copyText])
-
-    
 
   return (
     <div className={styles.container}>

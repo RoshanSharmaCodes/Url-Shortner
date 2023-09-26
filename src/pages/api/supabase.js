@@ -5,10 +5,10 @@ const supabaseConnection = createClient(process.env.SUPABASE_URL, process.env.SU
 
 export default async function handler(req,res) {
     if(req.method == 'POST'){
-        const mainUrl = req.body.mainUrl;
-        const id = uuidV4().slice(0,8)
-        var shortenUrl = `${req.headers.host}/${id}`
-        const {data,error} = await supabaseConnection.from("urls").insert([{id:id,mainurl:mainUrl}]).single()
+        const originalUrl = req.body;
+        const id = uuidV4().slice(0,4)
+        var shortenUrl = `${req.headers.host}/api/link/${id}`
+        const {data,error} = await supabaseConnection.from("urls").insert([{id:id,mainurl:originalUrl}]).single()
         if(error){
             res.status(500).json({status:`Failed to Shorten URL ${JSON.stringify(error)}` })
         } else {
