@@ -12,9 +12,17 @@ export const MainPage = () => {
         navigator.clipboard.writeText(shortUrl)
     }
 
-    const generateShortUrl = (e) => {
-        e.preventDefault()        
-        setShortUrl("dgfd")
+    const generateShortUrl = async (e) => {
+        console.log("API Called")
+        setCopyText("Copy")
+        e.preventDefault() 
+        const response = await fetch("/api/supabase",{
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(mainUrl)
+        })
+        const data = await response.json()
+        setShortUrl(data.url)
     }
 
     useEffect(()=>{
